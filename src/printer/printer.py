@@ -23,7 +23,30 @@ class Printer:
             s.settimeout(5)
             s.connect(addr)
             s.settimeout(None)
-            s.send(payload)
+            s.send(payload.encode())
+            res['msg'] = 'Ready'
+        except Exception as e:
+            print(str(e))
+            res['ok'] = False
+            res['error'] = str(e)
+        finally:
+            if s is not None:
+                s.close()
+            return res
+
+    def print_rol(self):
+        print(self.printer_ip)
+        print(self.printer_port)
+        addr = (self.printer_ip, self.printer_port)
+        payload = self.coder.build_roler_code()
+        print(payload)
+        s = socket.socket()
+        res = {'ok': True, "msg": '', 'error': ''}
+        try:
+            s.settimeout(5)
+            s.connect(addr)
+            s.settimeout(None)
+            s.send(payload.encode())
             res['msg'] = 'Ready'
         except Exception as e:
             print(str(e))
