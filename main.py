@@ -2,7 +2,6 @@ from fastapi import FastAPI
 from src.routes.routes import set_api_routes
 from src.middlewares.cors_middleware import set_cors
 import uvicorn
-from dotenv import dotenv_values
 
 app = FastAPI()
 
