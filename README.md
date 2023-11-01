@@ -2,7 +2,7 @@
 
 - [OPTIONAL] May be create tar to upload in host server
 ````
-tar -cvf printer-zpl.tar --exclude='printer-zpl/venv' --exclude='printer-zpl/.git' printer-zpl/
+tar -cvf printer-zpl.tar --exclude='printer-zpl/venv' --exclude='printer-zpl/.git' --exclude='printer-zpl/scripts' printer-zpl/
 ````
   
 - [OPTIONAL] Create image specifying version x.x
