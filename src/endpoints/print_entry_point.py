@@ -18,7 +18,7 @@ router = APIRouter(
 @router.post("/print")
 async def print_box(request: OrderDetailRequest) -> Response:
     """Function printing python version."""
-    return controller.print(request)
+    return controller.print_order_detail(request)
 
 
 @router.post("/print-rol")
