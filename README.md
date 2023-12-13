@@ -12,5 +12,5 @@ docker build printer-zpl/ -t printer_zpl:x.x
 
 - Create container
 ````
-docker run --restart always --network network-ks-orders --ip 172.124.0.10 --name printer_zpl -p 8989:8989 -d printer_zpl:v.v
+docker run --restart always --network network-ks-orders --ip 172.124.0.10 -e TZ=UTC+5 --name printer_zpl -p 8989:8989 -d printer_zpl:v.v
 ````
