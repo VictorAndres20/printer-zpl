@@ -9,7 +9,7 @@ from src.printer.printer import Printer
 from src.request.request import OrderDetailRequest, RolerRequest, OrderDetailEanRequest
 from src.exceptions.printer_exception import PrinterException
 
-config = dotenv_values(".env")
+config: dict = dotenv_values(".env")
 
 
 class PrinterController(RestController):

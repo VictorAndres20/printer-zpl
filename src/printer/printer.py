@@ -14,7 +14,7 @@ class Printer:
     def print_code(self, code: str):
         addr = (self.printer_ip, self.printer_port)
         payload = code
-        print(payload)
+        # print(payload)
         s = socket.socket()
         res = {'ok': True, "msg": '', 'error': ''}
         try:
@@ -26,7 +26,7 @@ class Printer:
         except Exception as e:
             print(str(e))
             res['ok'] = False
-            res['error'] = str(e)
+            res['error'] = str(e) if str(e) != 'timed out' else f"No se encontró la impresora, revisar IP"
         finally:
             if s is not None:
                 s.close()
