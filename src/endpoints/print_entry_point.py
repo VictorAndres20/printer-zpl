@@ -27,11 +27,11 @@ async def print_roller(request: RolerRequest) -> Response:
     return controller.print_rol(request)
 
 @router.post("/print-nalsani-rol")
-async def print_roller(request: OrderDetailEanRequest) -> Response:
+async def print_roller_nalsani(request: OrderDetailEanRequest) -> Response:
     """Function printing python version."""
     return controller.print_order_nalsani_detail(request)
 
 @router.post("/print-eliot-rol")
-async def print_roller(request: OrderDetailEanRequest) -> Response:
+async def print_roller_eliot(request: OrderDetailEanRequest) -> Response:
     """Function printing python version."""
     return controller.print_order_eliot_detail(request)

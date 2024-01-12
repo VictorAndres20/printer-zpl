@@ -39,8 +39,8 @@ class ZplCoder:
     def build_eliot_code(self):
         code = f"^XA^FXinformation.^CFA,14"
         code += f"^FO{config['LABEL_WIDTH_ROLLER_E']},10^FD{build_date_eliot()} {self.model.label2}{self.model.label3}^FS"
-        code += f"^FO520,10^FD{self.model.label2}^FS"
-        code += f"^FO680,10^FD{self.model.ean}^FS"
+        code += f"^FO480,10^FD{self.model.label2}^FS"
+        code += f"^FO630,10^FD{self.model.ean}^FS"
         code += f"^FO{config['LABEL_WIDTH_ROLLER_E']},35^FDCOLOR: {self.model.label3} OC:{self.model.oc}^FS"
         code += f"^FO680,35^FD{self.model.label4}.00 MTS^FS"
         code += f"^CI28^FXbar code."

@@ -5,6 +5,7 @@ from pydantic import BaseModel
 
 class OrderDetailRequest(BaseModel):
     ip: str
+    printer: int
     detail_id: str
     client_name: str
     ref: str
@@ -16,6 +17,7 @@ class OrderDetailRequest(BaseModel):
 
 class RolerRequest(BaseModel):
     ip: str
+    printer: int
     detail_id: Optional[str]
     desc: str
     ref: str
@@ -25,6 +27,7 @@ class RolerRequest(BaseModel):
 
 class OrderDetailEanRequest(BaseModel):
     ip: str
+    printer: int
     detail_id: str
     client_name: str
     ref: str
