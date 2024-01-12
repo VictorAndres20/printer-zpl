@@ -1,8 +1,6 @@
 def build_eliot_barcode(mts: str):
     meters = mts
     size = 6
-    print(meters)
-    print(len(meters))
     if len(meters) > size:
         raise Exception('Meters are bigger')
     if size > len(meters):
