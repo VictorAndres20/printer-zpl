@@ -46,3 +46,12 @@ class ZplCoder:
         code += f"^CI28^FXbar code."
         code += f"^BY2,3,100^FO{config['LABEL_WIDTH_ROLLER_E_B']},60^BC^FD1{self.model.ean}3{build_eliot_barcode(self.model.label4)}.000:    ^FS^XZ"
         return code
+    
+    def build_large_code(self):
+        code = f"^XA^FXinformation.^CFA,14"
+        code += f"^FO{config['LABEL_WIDTH_ROLLER_E']},10^FD{build_date_eliot()} {self.model.label2}{self.model.label3}^FS"
+        code += f"^FO{config['LABEL_WIDTH_ROLLER_E']},35^FDOC:{self.model.oc}^FS"
+        code += f"^FO580,35^FD{self.model.label4}.00 MTS^FS"
+        code += f"^CI28^FXbar code."
+        code += f"^BY2,3,100^FO{config['LABEL_WIDTH_ROLLER_E_B']},60^BC^FD{self.model.ean}^FS^XZ"
+        return code

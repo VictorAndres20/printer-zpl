@@ -64,7 +64,8 @@ class PrinterController(RestController):
                               KsOrderEanModel(request.detail_id, request.client_name, request.ref,
                                            request.color, request.mts, request.kg, request.person,
                                            request.client_cod, request.ref_description, request.ean, request.oc))
-            res = printer.print_code(printer.coder.build_eliot_code())
+            code = printer.coder.build_eliot_code() if request.client_cod == 'MAN0024' else printer.coder.build_large_code()
+            res = printer.print_code(code)
             if not res['ok']:
                 raise PrinterException(res['error'])
             return self.build_ok_response_with_data("Ready")

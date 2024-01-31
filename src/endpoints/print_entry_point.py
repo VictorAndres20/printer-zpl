@@ -19,23 +19,23 @@ router = APIRouter(
 async def print_box(request: OrderDetailRequest) -> Response:
     """Function printing python version."""
     return controller.print_order_detail(request)
-    # return Response(ok=True)
+    # return Response(ok=True, data={})
 
 
 @router.post("/print-rol")
 async def print_roller(request: RolerRequest) -> Response:
     """Function printing python version."""
     return controller.print_rol(request)
-    # return Response(ok=True)
+    # return Response(ok=True, data={})
 
 @router.post("/print-nalsani-rol")
 async def print_roller_nalsani(request: OrderDetailEanRequest) -> Response:
     """Function printing python version."""
     return controller.print_order_nalsani_detail(request)
-    # return Response(ok=True)
+    # return Response(ok=True, data={})
 
 @router.post("/print-eliot-rol")
 async def print_roller_eliot(request: OrderDetailEanRequest) -> Response:
     """Function printing python version."""
     return controller.print_order_eliot_detail(request)
-    # return Response(ok=True)
+    # return Response(ok=True, data={})
