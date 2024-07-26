@@ -1,7 +1,11 @@
 import socket
+from dotenv import dotenv_values
 
 from src.models.zpl_model import ZplModel
 from src.printer.zpl_code import ZplCoder
+
+
+config: dict = dotenv_values(".env")
 
 
 class Printer:
@@ -12,25 +16,30 @@ class Printer:
         self.coder = ZplCoder(zpl_model)
     
     def print_code(self, code: str):
-        addr = (self.printer_ip, self.printer_port)
-        payload = code
-        # print(payload)
-        s = socket.socket()
-        res = {'ok': True, "msg": '', 'error': ''}
-        try:
-            s.settimeout(5)
-            s.connect(addr)
-            s.settimeout(None)
-            s.send(payload.encode())
-            res['msg'] = 'Ready'
-        except Exception as e:
-            print(str(e))
-            res['ok'] = False
-            res['error'] = str(e) if str(e) != 'timed out' else f"No se encontró la impresora, revisar IP"
-        finally:
-            if s is not None:
-                s.close()
-            return res
+        if config["ENV"] == 'prod':
+            addr = (self.printer_ip, self.printer_port)
+            payload = code
+            # print(payload)
+            s = socket.socket()
+            res = {'ok': True, "msg": '', 'error': ''}
+            try:
+                s.settimeout(5)
+                s.connect(addr)
+                s.settimeout(None)
+                s.send(payload.encode())
+                res['msg'] = 'Ready'
+            except Exception as e:
+                print(str(e))
+                res['ok'] = False
+                res['error'] = str(e) if str(e) != 'timed out' else f"No se encontró la impresora, revisar IP"
+            finally:
+                if s is not None:
+                    s.close()
+                return res
+        else:
+            print("Not production environment")
+            print(code)
+            return {'ok': True}
 
     def print(self):
         addr = (self.printer_ip, self.printer_port)

@@ -1,4 +1,3 @@
-"""Controller"""
 from dotenv import dotenv_values
 
 from src.controllers.rest_controller import RestController
@@ -13,10 +12,8 @@ config: dict = dotenv_values(".env")
 
 
 class PrinterController(RestController):
-    """PrinterController"""
 
     def print_order_detail(self, request: OrderDetailRequest):
-        """print_order_detail"""
         try:
             printer = Printer(request.ip, int(config["PRINTER_PORT"])  if request.printer == 1 else int(config["PRINTER_PORT_2"]),
                               KsOrderModel(request.detail_id, request.client_name, request.ref,
@@ -30,7 +27,6 @@ class PrinterController(RestController):
             return self.build_error_response(str(e))
 
     def print_rol(self, request: RolerRequest):
-        """print_rol"""
         try:
             printer = Printer(request.ip, int(config["PRINTER_PORT"])  if request.printer == 1 else int(config["PRINTER_PORT_2"]),
                               KsRollerModel(request.mts, request.ref, request.color,
@@ -44,7 +40,6 @@ class PrinterController(RestController):
             return self.build_error_response(str(e))
         
     def print_order_nalsani_detail(self, request: OrderDetailEanRequest):
-        """print_order_detail"""
         try:
             printer = Printer(request.ip, int(config["PRINTER_PORT"])  if request.printer == 1 else int(config["PRINTER_PORT_2"]),
                               KsOrderEanModel(request.detail_id, request.client_name, request.ref,
@@ -56,9 +51,21 @@ class PrinterController(RestController):
             return self.build_ok_response_with_data("Ready")
         except PrinterException as e:
             return self.build_error_response(str(e))
+
+    def print_order_reymond_detail(self, request: OrderDetailEanRequest):
+        try:
+            printer = Printer(request.ip, int(config["PRINTER_PORT"])  if request.printer == 1 else int(config["PRINTER_PORT_2"]),
+                              KsOrderEanModel(request.detail_id, request.client_name, request.ref,
+                                           request.color, request.mts, request.kg, request.person,
+                                           request.client_cod, request.ref_description, request.ean, request.oc))
+            res = printer.print_code(printer.coder.build_reymond_code())
+            if not res['ok']:
+                raise PrinterException(res['error'])
+            return self.build_ok_response_with_data("Ready")
+        except PrinterException as e:
+            return self.build_error_response(str(e))
     
     def print_order_eliot_detail(self, request: OrderDetailEanRequest):
-        """print_order_detail"""
         try:
             printer = Printer(request.ip, int(config["PRINTER_PORT"])  if request.printer == 1 else int(config["PRINTER_PORT_2"]),
                               KsOrderEanModel(request.detail_id, request.client_name, request.ref,

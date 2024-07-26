@@ -36,6 +36,15 @@ class ZplCoder:
                 f"^FS^FO{config['LABEL_WIDTH_ROLLER_N']},270^FD{build_date()}  {self.model.label6}^FS^XZ")
         return code
 
+    def build_reymond_code(self):
+        code = (f"^XA^CFA,24^FO{config['LABEL_WIDTH_ROLLER_N']},10^FD{self.model.label1}^FS^CFA,14"
+                f"^FO{config['LABEL_WIDTH_ROLLER_N']},50^FD{self.model.label2}^FS^FO230,50^FDUnd:^FS"
+                f"^FS^FO{config['LABEL_WIDTH_ROLLER_N']},80^FDExt:^FS^FO230,80^FD{self.model.label4}^FS"
+                f"^FO{config['LABEL_WIDTH_ROLLER_N']},110^FD{self.model.label3}^FS"
+                f"^CI28^FX Third section with bar code."
+                f"^BY2,3,100^FO{config['LABEL_WIDTH_ROLLER_N']},150^BC^FD{self.model.ean}^FS^FO{config['LABEL_WIDTH_ROLLER_N']},150^XZ")
+        return code
+
     def build_eliot_code(self):
         code = f"^XA^FXinformation.^CFA,14"
         code += f"^FO{config['LABEL_WIDTH_ROLLER_E']},10^FD{build_date_eliot()} {self.model.label2}{self.model.label3}^FS"
