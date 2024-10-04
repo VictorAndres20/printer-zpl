@@ -38,7 +38,7 @@ class ZplCoder:
 
     def build_reymond_code(self):
         code = (f"^XA^CFA,24^FO{config['LABEL_WIDTH_ROLLER_N']},10^FD{self.model.label1}^FS^CFA,14"
-                f"^FO{config['LABEL_WIDTH_ROLLER_N']},50^FD{self.model.label2}^FS^FO230,50^FDUnd:^FS"
+                f"^FO{config['LABEL_WIDTH_ROLLER_N']},50^FD{self.model.label2}^FS^FO230,50^FDUnd: MTS^FS"
                 f"^FS^FO{config['LABEL_WIDTH_ROLLER_N']},80^FDExt:^FS^FO230,80^FD{self.model.label4}^FS"
                 f"^FO{config['LABEL_WIDTH_ROLLER_N']},110^FD{self.model.label3}^FS"
                 f"^CI28^FX Third section with bar code."
